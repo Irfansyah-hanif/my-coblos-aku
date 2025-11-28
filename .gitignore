@@ -1,0 +1,28 @@
+# --- System Files (Sampah OS) ---
+.DS_Store
+Thumbs.db
+
+# --- Editor / VS Code ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Dependency (JANGAN DIHAPUS, INI PENTING) ---
+node_modules/
+package-lock.json
+yarn.lock
+
+# --- Environment Variables (RAHASIA) ---
+# Jangan pernah upload file ini karena berisi password/API key
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Build Output (Hasil Compile) ---
+dist/
+build/
+out/
+coverage/
