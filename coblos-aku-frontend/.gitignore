@@ -1,0 +1,49 @@
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import MobileNavbar from './components/MobileNavbar';
+import HomePage from './pages/HomePage';
+import KandidatPage from './pages/KandidatPage';
+import CandidateDetailPage from './pages/CandidateDetailPage';
+import BeritaPage from './pages/BeritaPage';
+import BeritaDetailPage from './pages/BeritaDetailPage';
+import ProfilePage from './pages/ProfilePage';
+
+function App() {
+  const [page, setPage] = useState('home');
+  const [selectedId, setSelectedId] = useState(null); // ID Kandidat
+  const [newsId, setNewsId] = useState(null);         // ID Berita
+
+  // Fungsi Navigasi
+  const goToCandidateDetail = (id) => { setSelectedId(id); setPage('detail-kandidat'); };
+  const goToNewsDetail = (id) => { setNewsId(id); setPage('detail-berita'); };
+
+  // Render Halaman
+  const renderContent = () => {
+    switch(page) {
+      case 'home': return <HomePage setPage={setPage} />;
+      case 'kandidat': return <KandidatPage onDetail={goToCandidateDetail} />;
+      case 'detail-kandidat': return <CandidateDetailPage id={selectedId} onBack={() => setPage('kandidat')} />;
+      case 'berita': return <BeritaPage onDetail={goToNewsDetail} />;
+      case 'detail-berita': return <BeritaDetailPage id={newsId} onBack={() => setPage('berita')} />;
+      case 'profile': return <ProfilePage />;
+      default: return <HomePage setPage={setPage} />;
+    }
+  };
+
+  // Sembunyikan Navbar di halaman detail
+  const showNavbar = !['detail-kandidat', 'detail-berita'].includes(page);
+
+  return (
+    <>
+      <main>{renderContent()}</main>
+      {showNavbar && <MobileNavbar page={page} setPage={setPage} />}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

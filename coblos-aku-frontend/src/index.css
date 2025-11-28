@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy-50: #f8fafc;
+  --color-navy-100: #f1f5f9;
+  --color-navy-800: #1e293b;
+  --color-navy-900: #0f172a;
+  --color-gold-100: #f9f5e8;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b5952f;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* SETUP GLOBAL */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Tetap kunci window utama agar scroll ada di dalam komponen */
+}
+
+body {
+  background-color: var(--color-slate-50);
+  color: var(--color-slate-800);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* KHUSUS MOBILE: Kunci total agar tidak mental-mentul (Rubber Band Effect) */
+@media (max-width: 768px) {
+  body {
+    position: fixed; /* Hanya di HP */
+    overscroll-behavior: none;
+  }
+  /* Sembunyikan Scrollbar HANYA di HP */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* KHUSUS DESKTOP: Tampilkan Scrollbar Cantik */
+@media (min-width: 769px) {
+  /* Desain Scrollbar Webkit (Chrome/Edge/Safari) */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1; /* Slate-300 */
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8; /* Slate-400 */
+  }
+}
